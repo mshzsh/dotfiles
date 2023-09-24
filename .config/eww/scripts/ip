@@ -1,0 +1,29 @@
+#!/bin/bash
+
+active_interface=$(ip route get 8.8.8.8 | awk '{print $5}')
+RESULT="-.-.-.-"
+
+if [[ "$1" == "--interface" ]]; then
+    echo $active_interface
+    exit
+fi
+
+if [[ "$1" == "--local" ]]; then
+    if [ -n "$active_interface" ]; then
+        RESULT="$(ip addr show $active_interface | grep -oP '(?<=inet\s)\d+(\.\d+){3}')"
+    fi
+fi
+
+if [ $# -eq 0 ]; then
+    if [ -n "$active_interface" ]; then
+        IP="$(curl checkip.amazonaws.com)"
+        IP_REGEX="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+
+        if [[ $IP =~ $IP_REGEX ]]; then
+            RESULT=$IP
+        fi
+
+    fi
+fi
+
+echo -e $RESULT

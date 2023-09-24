@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+
+if [[ "$1" == "--srv" ]]; then
+	nemo /srv &
+	~/.config/eww/launch
+elif [[ "$1" == "--proj" ]]; then
+	nemo ~/Projects &
+	~/.config/eww/launch
+elif [[ "$1" == "--music" ]]; then
+	nemo ~/Music &
+	~/.config/eww/launch
+elif [[ "$1" == "--pics" ]]; then
+	nemo ~/Pictures &
+	~/.config/eww/launch
+
+elif [[ "$1" == "--cfg" ]]; then
+	nemo ~/.config &
+	~/.config/eww/launch
+
+elif [[ "$1" == "--local" ]]; then
+	nemo ~/.local/share &
+	~/.config/eww/launch
+fi

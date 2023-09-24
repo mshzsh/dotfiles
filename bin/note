@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+DIR_PATH=~/.notes
+mkdir -p $DIR_PATH
+[[ -f $DIR_PATH/todo.md ]] || touch $DIR_PATH/todo.md
+main() {
+  previous_file="$1"
+  file_to_edit=`select_file $previous_file`
+
+  if [ -n "$file_to_edit" ] ; then
+    "nvim" "$DIR_PATH/$file_to_edit"
+    main "$file_to_edit"
+  fi
+}
+select_file() {
+  cd $DIR_PATH && fzf --preview="cat {}" --preview-window=right:80%:wrap --color=bw --border=rounded
+}
+main ""

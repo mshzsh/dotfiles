@@ -1,0 +1,248 @@
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+setfont ter-132n
+pacman -Syy
+pacman -S fish
+fish
+lsblk
+gdisk /dev/sdc
+o
+y
+w
+y
+gdisk /dev/sdc
+n
+(Press Enter)
+(Press Enter)
++300m
+ef00
+n
+(Press Enter)
+(Press Enter)
++4g
+8200
+(Press Enter)
+(Press Enter)
++200g
+8300
+w
+y
+lsblk
+mkfs.fat -F32 /dev/sdc1
+mkswap /dev/sdc2
+swapon /dev/sdc2
+mkfs.ext4 /dev/sdc3
+mount /dev/sdc3 /mnt
+mkdir -p /mnt/boot/efi
+mount /dev/sdc1 /mnt/boot/efi
+pacstrap /mnt base linux linux-firmware nano intel-ucode
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+pacman -S fish
+fish
+ln -sf /usr/share/zoneinfo/Asia/Tehran /etc/localtime
+hwclock --systohc
+timedatectl set-ntp true
+nano /etc/locale.gen
+    <uncomment> en_US.UTF-8 UTF-8
+locale-gen
+nano /etc/locale.conf
+    LANG=en_US.UTF-8
+nano /etc/vconsole.conf
+    KEYMAP=us
+echo "alienware" >> /etc/hostname
+nano /etc/hosts
+    127.0.0.1       localhost
+    ::1             localhost
+    127.0.1.1       alienware.localdomain   alienware
+passwd
+<Enter Your Password>
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools wpa_supplicant git reflector bash-completion base-devel linux-headers bluez bluez-utils xdg-utils xdg-user-dirs inetutils dnsutils nfs-utils ntfs-3g gvfs gvfs-smb openssh nvidia nvidia-utils
+nano /etc/mkinitcpio.conf
+    MODULES=(nvidia)
+mkinitcpio -p linux
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+nano /etc/default/grub
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet video=1920\*1080 nvidia-drm.modeset=1"
+grub-mkconfig -o /boot/grub/grub.cfg
+systemctl enable NetworkManager
+systemctl enable bluetooth
+systemctl enable cups
+systemctl enable sshd
+systemctl enable reflector.timer
+systemctl enable fstrim.timer
+useradd -mG wheel mshzsh
+passwd mshzsh
+<Enter Your Password>
+ln -s /usr/bin/nano /usr/bin/vi
+visudo
+    <uncomment> %wheel ALL=(ALL:ALL) ALL
+<add> Defaults timestamp_timeout=-1
+exit
+umount -a
+reboot
+<Login With User (mshzsh)>
+<Install packages>
+
+reboot
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+sudo pacman -S hyprland
+sudo pacman -S xdg-desktop-portal-hyprland _- Uninstall "xdg-desktop-portal-wlr" if exists -_
+sudo pacman -S greetd-tuigreet
+sudo pacman -S ffmpeg
+sudo pacman -S viewnior
+sudo pacman -S gnome-keyring libsecret
+sudo pacman -S python-pip
+sudo pacman -S neovim
+sudo pacman -S xarchiver
+sudo pacman -S net-tools
+sudo pacman -S dunst
+sudo pacman -S pulseaudio pulseaudio-bluetooth pavucontrol
+sudo pacman -S mpd ncmpcpp mpc
+sudo pacman -S bashtop
+sudo pacman -S fzf
+sudo pacman -S docker
+sudo pacman -S telegram-desktop
+sudo pacman -S alsa-utils
+sudo pacman -S pacman-contrib
+sudo pacman -S ttf-font-awesome
+sudo pacman -S ttf-roboto
+sudo pacman -S ttf-terminus-nerd
+sudo pacman -S ttf-hack-nerd
+sudo pacman -S wireless*tools
+sudo pacman -S cronie
+sudo pacman -S docker-compose
+sudo pacman -S python-pipenv
+sudo pacman -S wl-clipboard
+sudo pacman -S grim slurp swappy
+sudo pacman -S swaybg
+sudo pacman -S guake
+sudo pacman -S lxsession-gtk3
+sudo pacman -S lxappearance
+sudo pacman -S nemo
+sudo pacman -S firefox-developer-edition
+sudo pacman -S brightnessctl
+sudo pacman -S wofi
+sudo pacman -S qalculate-gtk
+sudo pacman -S mpv
+sudo pacman -S ripgrep
+sudo pacman -S obs-studio *- After add "screen capture", wait 10sec to detect monitor, if not detected, install "yay -S wlrobs-hg" -_
+sudo pacman -S seahorse
+sudo pacman -S ncdu _- Get all file & dirs size -_
+sudo pacman -S cliphist
+sudo pacman -S exa _- A modern replacement for "ls" -_
+sudo pacman -S gping _- A modern replacement for "ping" -_
+sudo pacman -S libpam-google-authenticator
+sudo pacman -S dotnet-sdk
+sudo pacman -S aspnet-runtime
+sudo pacman -S gammastep
+sudo pacman -S epiphany _- Safari engine browser -\_
+
+yay -S wps-office
+yay -S ckbcomp _- For persian keyboard layout -_
+yay -S postman-bin
+yay -S xdman
+yay -S visual-studio-code-bin
+yay -S ttf-ms-fonts
+yay -S beekeeper-studio-bin
+yay -S eww-wayland
+yay -S mpvpaper
+yay -S wdisplays
+yay -S wlr-randr-git
+yay -S azote
+yay -S gojq
+yay -S google-chrome
+yay -S woeusb-ng _- (Boot USB for linux & windows) be sure run with: "xhost +local: && sudo woeusbgui" -_
+yay -S swaylock-effects-git
+yay -S swayidle-git
+yay -S hyprpicker-git
+yay -S hybrid-bar
+yay -S rofi-lbonn-wayland-git
+yay -S ttf-intel-one-mono
+
+sudo systemctl enable greetd
+sudo systemctl enable docker
+sudo systemctl enable cronie
+
+\*\*\* (((If get error keys gpg))) :
+sudo pacman -S archlinux-keyring
+sudo pacman-key --populate archlinux
+sudo pacman-key --refresh-keys
+sudo pacman -Syu
+
+---
+
+\*\*\* ((if can't to sudo su (incorrect password attempt)) :
+faillock --reset
+
+---
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+For install spicifict version of python :
+yay -S python38
+
+--------------------------------------- Run docker as user :
+sudo crontab -e
+@reboot chown mshzsh:mshzsh /var/run/docker.sock
+
+--------------------------------------- Enable firefox custom style :
+Go to "about:config" in Firefox.
+Search for "toolkit.legacyUserProfileCustomizations.stylesheets" and set it to "true".
+
+---------------------------------------- Remove unnecessary packages :
+sudo pacman -R $(pacman -Qtdq)
+sudo pacman -Rns (pacman -Qtdq)
+
+---------------------------------------- Laptop lid & power button :
+sudo vi /etc/systemd/logind.conf
+HandleLidSwitch=ignore
+HandlePowerKey=ignore
+sudo systemctl restart systemd-logind
+
+---------------------------------------- Fish style :
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+omf install bobthefish
+
+And use <fish_config browse> command to customize all colors such as suggested commands.
+
+Or Use Starship shell :
+curl -sS https://starship.rs/install.sh | sh
+vi ~/.config/fish/config.fish
+starship init fish | source
+
+---------------------------------------- For wine :
+yay -S wine-stable
+
+---------------------------------------- For launch CS:GO steam :
+sudo pacman -S gperftools
+
+---------------------------------------- For run vscode in wayland instead of xwayland :
+sudo vi /usr/share/applications/code.desktop
+Add ((--enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu)) in ((Exec=/usr/bin/code))
+
+---------------------------------------- Run nvim when use "vi" command :
+sudo rm /usr/bin/vi
+sudo ln -s /usr/bin/nvim /usr/bin/vi
+
+---------------------------------------- Auto unlock login keyring when login system :
+sudo vi /etc/pam.d/greetd
+auth optional pam_gnome_keyring.so
+session optional pam_gnome_keyring.so auto_start
+
+If not working, in seahorse app, "set as default" the "login" session.
+
+---------------------------------------- generate hight speed mirror sources :
+sudo reflector --country Iran --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+---------------------------------------- Set DNS without password :
+sudo visudo
+mshzsh ALL=(ALL) NOPASSWD: /usr/bin/tee /etc/resolv.conf
+
+---------------------------------------- Extra fonts :
+cp ./.config/rofi/GrapeNuts-Regular.ttf ~/.local/share/fonts/
+
+---

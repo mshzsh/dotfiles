@@ -1,0 +1,2 @@
+#!/bin/bash
+hyprctl switchxkblayout at-translated-set-2-keyboard 0 && hyprctl switchxkblayout dell-kb216-wired-keyboard 0 && swayidle -w timeout 600 "swaylock" timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 3600 'systemctl suspend'

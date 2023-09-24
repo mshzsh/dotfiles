@@ -1,0 +1,23 @@
+#!/bin/sh
+#  
+CURRENT_DESKTOP=$(echo -e "$(hyprctl -j monitors)" | gojq '.[] | select(.focused==true) | "\(.activeWorkspace.id)" | tonumber')
+COMMAND="(box	:class \"works\"	:orientation \"h\" :spacing 5 :space-evenly \"false\""
+WORKSPACES="$(echo -e "$(hyprctl -j workspaces)" | gojq 'map(.id) | max')"
+EMPTY_WORKSPACES="$(echo -e "$(hyprctl -j workspaces)" | gojq -r '.[] | "\(.id)"')"
+
+
+for WS in $(seq $WORKSPACES)
+do
+    if [[ ! "${EMPTY_WORKSPACES[*]}" =~ "${WS}" ]]; then
+        ICON=""
+        CLASS="ws-icon-empty"
+	elif [ $CURRENT_DESKTOP -eq $WS ]; then
+        ICON="󱃋" #
+        CLASS="ws-icon-current"
+    else
+        ICON=""
+        CLASS="ws-icon"
+    fi
+    COMMAND="$COMMAND (button :onclick \"hyprctl dispatch workspace $WS\" :class \"$CLASS\"\"$ICON\") "
+done
+echo "$COMMAND )"

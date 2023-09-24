@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if pgrep gammastep &> /dev/null; then
+    brightnessctl s 100% && killall gammastep
+else
+    brightnessctl s 20% && gammastep -P -O 3500 &
+fi

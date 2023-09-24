@@ -1,0 +1,424 @@
+$foreground: #aec1d2;
+$green: #30b083;
+$yellow: #a5a55a;
+$red: #cb4040;
+
+/** Global *******************************************/
+* {
+  all: unset;
+  font-family: "Terminess Nerd Font"; /** 3270 Nerd Font Mono **/
+}
+
+/** Background ***************************************/
+.bg {
+  // background-image: url("/tmp/eww/bg/screenshot.png");
+  // background-color: #0a0e0f;
+  // opacity: 0.8;
+  // background-blend-mode: screen; /** difference, hard-light, luminosity, screen **/
+}
+
+/** Generic window ***********************************/
+.genwin {
+  background-color: rgba(15, 21, 24, 0.8);
+  border-radius: 0;
+  // border: 5px solid rgba(82, 136, 147,0.8);
+  border: 2px solid #000;
+}
+
+/** Todo ******************************************/
+
+.todo-icon {
+  color: $foreground;
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.todo {
+  color: $foreground;
+  font-size: 17px;
+  font-weight: bold;
+  margin: -15px 0px 0px 20px;
+}
+
+/** System ********************************************/
+.iconcpu,
+.iconmem,
+.iconbright,
+.iconvol,
+.iconmic,
+.iconbat {
+  font-size: 32px;
+  font-weight: normal;
+  color: $foreground;
+}
+
+.cpu_bar,
+.mem_bar,
+.bright_bar,
+.bat_bar,
+.vol_bar,
+.mic_bar,
+scale trough {
+  all: unset;
+  background-color: rgba(31, 48, 56, 0.8);
+  border-radius: 0;
+  min-height: 28px;
+  min-width: 240px;
+}
+
+.g-bar,
+.y-bar,
+.r-bar,
+.default-bar scale trough highlight {
+  all: unset;
+  border-radius: 0;
+}
+
+.g-bar scale trough highlight {
+  background-color: $green;
+}
+.y-bar scale trough highlight {
+  background-color: $yellow;
+}
+.r-bar scale trough highlight {
+  background-color: $red;
+}
+.default-bar scale trough highlight {
+  background-color: $foreground;
+}
+
+/** Clock ********************************************/
+.time_hour,
+.time_min {
+  color: $foreground;
+  font-size: 60px;
+  font-weight: bold;
+}
+.time_hour {
+  margin: 25px 0px 0px 20px;
+}
+.time_min {
+  margin: 0px 0px 20px 0px;
+}
+
+.time_date {
+  color: $foreground;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 20px 0px 0px 0px;
+}
+
+.time_day {
+  color: $foreground;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 0px 0px 20px -20px;
+  color: #476d7d;
+}
+
+/** Uptime ********************************************/
+.icontimer {
+  color: $foreground;
+  font-size: 90px;
+  font-weight: normal;
+}
+
+.uphour {
+  color: $foreground;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.upmin {
+  color: $foreground;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/** Music ***************************************/
+.album_art {
+  // margin: 20px;
+  // border-radius: 12px;
+
+  background-size: 220px;
+  min-height: 220px;
+  min-width: 220px;
+  margin: 20px;
+  border-radius: 14px;
+}
+.song {
+  color: $foreground;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 40px 0px 0px 0px;
+}
+
+.artist {
+  color: #476d7d;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0px 0px 15px 0px;
+}
+
+.btn_prev {
+  color: $foreground;
+  font-size: 32px;
+}
+.btn_play {
+  color: $foreground;
+  font-size: 48px;
+}
+.btn_next {
+  color: $foreground;
+  font-size: 32px;
+  margin-left: 23px;
+}
+
+.music_bar scale trough highlight {
+  all: unset;
+  background-color: $foreground;
+  border-radius: 0;
+}
+.music_bar scale trough {
+  all: unset;
+  background-color: rgba(31, 48, 56, 0.8);
+  border-radius: 0;
+  min-height: 20px;
+  min-width: 310px;
+  margin: 10px 0px 0px 0px;
+}
+
+/** Weather ***************************************/
+.iconweather {
+  color: $foreground;
+  font-size: 40px;
+  font-weight: normal;
+  margin: 15px 0px 0px 0px;
+}
+
+.label_temp {
+  color: $foreground;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 15px 20px 0px 0px;
+}
+
+.label_stat {
+  color: #476d7d;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.label_city {
+  color: $foreground;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px 5px 0px 0px;
+}
+
+/** distro ***************************************/
+.distro {
+  font-size: 17px;
+  font-weight: bold;
+  color: $foreground;
+  margin: 25px 0px 0px 0px;
+}
+
+/** Netstat ***************************************/
+.netstat {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 25px -15px 0px 0px;
+  min-width: 50px;
+  color: $foreground;
+}
+
+.netstat_icon {
+  color: #476d7d;
+}
+
+/** Links ***************************************/
+.iconweb,
+.iconmail {
+  color: $foreground;
+  font-size: 70px;
+  font-weight: normal;
+}
+.iconmail {
+  color: $foreground;
+}
+
+.workspace {
+  font-size: 28px;
+  margin: 55px 0px 0px 20px;
+}
+
+.ws-icon {
+  margin: 0px 20px 0px 0px;
+  color: $foreground;
+}
+
+.ws-icon-current {
+  margin: 0px 20px 0px 0px;
+  color: $foreground;
+}
+
+.ws-icon-empty {
+  margin: 0px 20px 0px 0px;
+  color: #476d7d;
+}
+
+.label_mails {
+  color: #476d7d;
+  font-size: 30px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+/** Action buttons ***************************************/
+.btn_wifi,
+.btn_bluetooth,
+.btn_vpn,
+.btn_screensaver,
+.btn_dns,
+.btn_kl {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.btn_wifi {
+  color: $foreground;
+  margin: 45px 25px 0 0;
+}
+.btn_bluetooth {
+  color: $foreground;
+}
+.btn_vpn {
+  color: $foreground;
+  margin: 45px 15px 0 0;
+}
+.btn_kl {
+  color: $foreground;
+  margin: 45px 25px 0 0;
+}
+.btn_screensaver {
+  color: $foreground;
+  margin-right: 15px;
+}
+.btn_dns {
+  color: $foreground;
+  margin: 45px 15px 0 0;
+}
+
+.wifi_essid {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: $foreground;
+}
+.dns {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: $foreground;
+}
+
+.kl {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: $foreground;
+}
+
+.ip {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: $foreground;
+}
+
+/** Home folders ***************************************/
+.hddbox {
+  // background-color: rgba(31, 48, 56,0.8);
+  margin: 15px;
+  border-radius: 12px;
+}
+.hddicon {
+  color: $foreground;
+  font-size: 70px;
+  font-weight: normal;
+  margin: 25px 20px 25px 40px;
+}
+.hdd_label {
+  color: $foreground;
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0px 0px 0px 15px;
+}
+.fs_sep {
+  color: rgba(31, 48, 56, 0.8);
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.iconfolder1,
+.iconfolder2,
+.iconfolder3,
+.iconfolder4,
+.iconfolder5,
+.iconfolder6 {
+  font-size: 32px;
+  font-weight: normal;
+  margin: 0px 0px 0px 75px;
+}
+.iconfolder1 {
+  color: $foreground;
+}
+.iconfolder2 {
+  color: $foreground;
+}
+.iconfolder3 {
+  color: $foreground;
+}
+.iconfolder4 {
+  color: $foreground;
+}
+.iconfolder5 {
+  color: $foreground;
+}
+.iconfolder6 {
+  color: $foreground;
+}
+
+.label_folder1,
+.label_folder2,
+.label_folder3,
+.label_folder4,
+.label_folder5,
+.label_folder6 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0px 0px 0px 30px;
+}
+.label_folder1 {
+  color: $foreground;
+}
+.label_folder2 {
+  color: $foreground;
+}
+.label_folder3 {
+  color: $foreground;
+}
+.label_folder4 {
+  color: $foreground;
+}
+.label_folder5 {
+  color: $foreground;
+}
+.label_folder6 {
+  color: $foreground;
+}
+
+/** EOF *************************************************/

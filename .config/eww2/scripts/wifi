@@ -1,0 +1,28 @@
+#!/bin/bash
+
+status=$(nmcli -t -f DEVICE,STATE con show --active)
+
+if echo "$status" | grep -q "enp"; then
+    icon="󰈀"
+    text=""
+    col="#13d49a"
+elif echo "$status" | grep -q "wl"; then
+    icon=""
+    text="$(iwgetid -r)"
+    col="#13d49a"
+else
+    icon="睊"
+    text=""
+    col="#e75050"
+fi
+
+
+
+if [[ "$1" == "--COL" ]]; then
+    echo $col
+elif [[ "$1" == "--ESSID" ]]; then
+	echo $text
+elif [[ "$1" == "--ICON" ]]; then
+	echo $icon
+fi
+

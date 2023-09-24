@@ -1,0 +1,6 @@
+/* For guake padding */
+VteTerminal,
+TerminalScreen,
+vte-terminal {
+    padding: 20px 20px 20px 20px;
+}

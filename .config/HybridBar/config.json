@@ -1,0 +1,22 @@
+{
+  "hybrid": {
+    "namespace": "hybrid-bar",
+    "r": 0,
+    "g": 0,
+    "b": 0,
+    "a": 0.7
+  },
+  "left-label_workspaces": {
+    "text": "",
+    "command": "$HOME/.config/eww/scripts/workspace --noeww"
+  },
+  "centered-label_time": {
+    "text": "",
+    "command": "date '+%H:%M'"
+  },
+  "right-label_input": {
+    "text": "",
+    "command": "$HOME/.config/eww/scripts/keyboard_layout",
+    "tooltip": ""
+  }
+}

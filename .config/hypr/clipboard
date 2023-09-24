@@ -1,0 +1,2 @@
+#!/bin/bash
+pkill alacritty || alacritty -e clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0  --color=bw --border=rounded --preview='cat {}' --preview-window=top:30%:wrap"

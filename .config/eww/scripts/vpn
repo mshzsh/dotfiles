@@ -1,0 +1,23 @@
+#!/bin/bash
+# IMPORTANT NOTE : Set ssh login (RSA) to vpn server for *ROOT* user in local system.
+# And in first time use "sshuttle --dns -r root@65.21.246.49 0/0" for input "Yes" in ssh.
+
+STATUS="$(pgrep sshuttle)"
+if [ $# -eq 0 ]; then
+	if [ "$STATUS" ]; then
+		echo 'amin1371x' | sudo -S killall sshuttle
+	else
+		echo 'amin1371x' | sudo -S sshuttle --dns -r root@65.21.246.49 0/0 &
+		# if [ "$STATUS" ]; then
+		#     exit
+		# else
+		#     sshuttle --dns -r root@65.21.246.49 0/0 &
+		# fi
+	fi
+else
+	if [ "$STATUS" ]; then
+		echo "󰯄"
+	else
+		echo "󰯅"
+	fi
+fi

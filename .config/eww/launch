@@ -1,0 +1,57 @@
+#!/bin/bash
+
+## Files and cmd
+FILE="$HOME/.cache/eww_launch"
+CFG="$HOME/.config/eww"
+EWW=`which eww`
+IMAGES_DIR="/tmp/eww/bg"
+
+mkdir -p $IMAGES_DIR
+
+## Run eww daemon if not running already
+if [[ ! `pidof eww` ]]; then
+	${EWW} daemon
+fi
+
+## Open widgets
+run_eww() {
+	# grim -g "0,0 1920x1080" "$IMAGES_DIR/screenshot.png" && \ # For dual monitors
+	# grim "$IMAGES_DIR/screenshot.png" && \
+	# cd $IMAGES_DIR && \
+	# ffmpeg -i $IMAGES_DIR/screenshot.png -vf "gblur=sigma=6" -y screenshot.png && \
+	${EWW} --config "$CFG" open-many \
+	background \
+	todo \
+	system \
+	clock \
+	uptime \
+	music \
+	workspaces \
+	weather \
+	distro \
+	mail \
+	wifi \
+	bluetooth \
+	vpn \
+	kl \
+	screensaver \
+	dns \
+	netstat \
+	folders && \
+	$CFG/scripts/weather_info --getdata && \
+	$CFG/scripts/mails --reload
+}
+
+## Launch or close widgets accordingly
+if [[ ! -f "$FILE" ]]; then
+	touch "$FILE"
+	run_eww
+else
+	killall eww
+	rm "$FILE"
+	eww daemon
+	# ${EWW} --config "$CFG" close \
+	# 				background todo system clock uptime music workspaces \
+	# 				weather apps mail wifi bluetooth vpn kl folders
+
+fi

@@ -1,0 +1,29 @@
+#!/bin/python
+
+import os
+import imaplib
+import sys
+
+cache_dir = os.path.expanduser("~/.cache/eww")
+
+if not os.path.isdir(cache_dir):
+    os.makedirs(cache_dir)
+if not os.path.isfile(f'{cache_dir}/mail'):
+    with open(f'{cache_dir}/mail', 'w') as f:
+        f.write('-')
+
+if '--reload' in sys.argv:
+    cache_file = open(f'{cache_dir}/mail', 'w')
+    cache_file.write("")
+    cache_file.close()
+
+imap_server = imaplib.IMAP4_SSL('imap.gmail.com')
+username = 'mshzsh@gmail.com'
+password = 'wndrfosrdmfmjssq'
+imap_server.login(username, password)
+imap_server.select('INBOX')
+status, email_ids = imap_server.search(None, 'UnSeen X-GM-RAW "Category:Primary"')
+new_emails = len(email_ids[0].split())
+cache_file = open(f'{cache_dir}/mail', 'w')
+cache_file.write(str(new_emails))
+cache_file.close()

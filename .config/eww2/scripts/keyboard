@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -e "$(hyprctl -j devices)" | gojq -r '.keyboards | .[] | select(.main == true) | .active_keymap' | cut -c 1-3

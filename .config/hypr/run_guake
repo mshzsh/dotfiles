@@ -1,0 +1,10 @@
+#!/bin/bash
+# Run Guake
+guake-toggle
+
+# Check if "eww" is running
+if pgrep -x eww >/dev/null; then
+    killall eww
+    rm $HOME/.cache/eww_launch
+    eww daemon
+fi

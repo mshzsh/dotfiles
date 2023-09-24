@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cmd="firefox-developer-edition --new-tab"
+
+if [[ "$1" == "--mail" ]]; then
+	~/.config/eww/launch && ${cmd} "https://mail.google.com"
+
+fi

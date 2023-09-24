@@ -1,0 +1,43 @@
+#!/bin/sh
+#  
+CURRENT_DESKTOP=$(echo -e "$(hyprctl -j monitors)" | gojq '.[] | select(.focused==true) | "\(.activeWorkspace.id)" | tonumber')
+COMMAND="(box	:class \"workspace\"	:orientation \"h\" :spacing 5 :space-evenly \"false\""
+WORKSPACES="$(echo -e "$(hyprctl -j workspaces)" | gojq 'map(.id) | max')"
+EMPTY_WORKSPACES="$(echo -e "$(hyprctl -j workspaces)" | gojq -r '.[] | "\(.id)"')"
+NOEWW=""
+
+for WS in $(seq $WORKSPACES)
+do
+    if [[ ! "${EMPTY_WORKSPACES[*]}" =~ "${WS}" ]]; then
+        if [[ "$1" == "--noeww" ]]; then
+            ICON=""
+        else
+            ICON="󰍹"
+        fi
+        CLASS="ws-icon-empty"
+	elif [ $CURRENT_DESKTOP -eq $WS ]; then
+        if [[ "$1" == "--noeww" ]]; then
+            ICON=""
+        else
+            ICON="" # 󱃋 󰚌    
+        fi
+        CLASS="ws-icon-current"
+    else
+        if [[ "$1" == "--noeww" ]]; then
+            ICON="󰻂"
+        else
+            ICON="󰍹"
+        fi
+        CLASS="ws-icon"
+    fi
+    if [[ "$1" == "--noeww" ]]; then
+        NOEWW="$NOEWW  $ICON"
+    else
+        COMMAND="$COMMAND (button :onclick \"~/.config/eww/launch && hyprctl dispatch workspace $WS\" :class \"$CLASS\"\"$ICON\") "
+    fi
+done
+if [[ "$1" == "--noeww" ]]; then
+    echo "$NOEWW" | sed -e 's/^[[:space:]]*//'
+else
+    echo "$COMMAND )"
+fi
