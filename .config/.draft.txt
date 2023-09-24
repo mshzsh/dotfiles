@@ -162,6 +162,7 @@ yay -S hyprpicker-git
 yay -S hybrid-bar
 yay -S rofi-lbonn-wayland-git
 yay -S ttf-intel-one-mono
+yay -S bfg _- Purge a file from git and git history -_
 
 sudo systemctl enable greetd
 sudo systemctl enable docker
