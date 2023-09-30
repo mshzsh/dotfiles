@@ -11,6 +11,8 @@
 
 ;; Action
 (defpoll SCREENSAVER :interval "0.1s" "scripts/screensaver --status")
+(defpoll BLUETOOTH :interval "0.1s" "scripts/bluetooth --status")
+(defpoll BLUETOOTH_ICON :interval "0.1s" "scripts/bluetooth --icon")
 (defpoll VPN :interval "0.1s" "scripts/vpn --status")
 (defpoll KL :interval "0.1s" "scripts/keyboard_layout")
 (defpoll WLAN_ESSID :interval "1s" "scripts/wifi --ESSID")
@@ -198,8 +200,9 @@
     (button :class "btn_wifi" :timeout "15s" :onclick "scripts/wifi --LIST" WLAN_ICON)
     (label :class "wifi_essid" :text WLAN_ESSID)))
 (defwidget bluetooth []
-  (box :class "genwin" :vexpand "false" :hexpand "false"
-    (button :class "btn_bluetooth" :onclick "systemctl" "")))
+  (box :class "genwin" :vexpand "false" :hexpand "false" :orientation "v" :space-evenly "false"
+    (button :class "btn_bluetooth" :timeout "60s" :onclick "scripts/bluetooth" BLUETOOTH_ICON)
+    (label :class "wifi_essid" :text BLUETOOTH)))
 (defwidget vpn []
   (box :class "genwin" :vexpand "false" :hexpand "false" :orientation "v" :space-evenly "false"
     (button :class "btn_vpn" :onclick "scripts/vpn" VPN)
