@@ -246,4 +246,11 @@ mshzsh ALL=(ALL) NOPASSWD: /usr/bin/tee /etc/resolv.conf
 ---------------------------------------- Extra fonts :
 cp ./.config/rofi/GrapeNuts-Regular.ttf ~/.local/share/fonts/
 
----
+---------------------------------------- Fixed external mic not detected in pulseaudio :
+sudo vi /etc/pulse/default.pa
+  load-module module-alsa-source device=hw:0,0
+
+(Add this line before ".ifexists module-udev-detect.so")
+restart pulseaudio with:
+pulseaudio -k ; pulseaudio -D
+----------------------------------------
