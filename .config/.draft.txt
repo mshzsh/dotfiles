@@ -168,22 +168,20 @@ sudo systemctl enable greetd
 sudo systemctl enable docker
 sudo systemctl enable cronie
 
-\*\*\* (((If get error keys gpg))) :
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+--------------------------------------- Keys gpg error :
 sudo pacman -S archlinux-keyring
 sudo pacman-key --populate archlinux
 sudo pacman-key --refresh-keys
 sudo pacman -Syu
 
----
-
-\*\*\* ((if can't to sudo su (incorrect password attempt)) :
+--------------------------------------- can't to sudo su incorrect password attempt :
 faillock --reset
 
----
-
-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
-For install spicifict version of python :
+--------------------------------------- For install spicifict version of python :
 yay -S python38
 
 --------------------------------------- Run docker as user :
