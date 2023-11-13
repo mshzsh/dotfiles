@@ -144,7 +144,6 @@ sudo pacman -S epiphany _- Safari engine browser -\_
 yay -S wps-office
 yay -S ckbcomp _- For persian keyboard layout -_
 yay -S postman-bin
-yay -S xdman
 yay -S visual-studio-code-bin
 yay -S ttf-ms-fonts
 yay -S beekeeper-studio-bin
