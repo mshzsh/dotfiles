@@ -140,6 +140,7 @@ sudo pacman -S dotnet-sdk
 sudo pacman -S aspnet-runtime
 sudo pacman -S gammastep
 sudo pacman -S epiphany _- Safari engine browser -\_
+sudo pacman -S mtpfs gvfs-mtp gvfs-gphoto2    _- Connect mobile phone with USB fot transfer files -\_
 
 yay -S wps-office
 yay -S ckbcomp _- For persian keyboard layout -_
