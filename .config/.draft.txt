@@ -57,14 +57,11 @@ nano /etc/hosts
     127.0.1.1       alienware.localdomain   alienware
 passwd
 <Enter Your Password>
-pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools wpa_supplicant git reflector bash-completion base-devel linux-headers bluez bluez-utils xdg-utils xdg-user-dirs inetutils dnsutils nfs-utils ntfs-3g gvfs gvfs-smb openssh nvidia nvidia-utils
-nano /etc/mkinitcpio.conf
-    MODULES=(nvidia)
-mkinitcpio -p linux
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools wpa_supplicant git reflector bash-completion base-devel linux-headers bluez bluez-utils xdg-utils xdg-user-dirs inetutils dnsutils nfs-utils ntfs-3g gvfs gvfs-smb openssh
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 nano /etc/default/grub
-    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet video=1920\*1080 nvidia-drm.modeset=1"
+    GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet video=1920\*1080"
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 systemctl enable bluetooth
