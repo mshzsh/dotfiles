@@ -251,4 +251,16 @@ sudo vi /etc/pulse/default.pa
 (Add this line before ".ifexists module-udev-detect.so")
 restart pulseaudio with:
 pulseaudio -k ; pulseaudio -D
-----------------------------------------
+---------------------------------------- For Nvidia GPU :
+sudo pacman -S nvidia-dkms
+yay -S libva-nvidia-driver-git
+sudo vi /etc/default/grub
+  GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet video=1920*1080 nvidia_drm.modeset=1"
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo vi /etc/mkinitcpio.conf
+  MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+sudo vi /etc/modprobe.d/nvidia.conf
+  options nvidia-drm modeset=1
+reboot
+-----------------------------------------
